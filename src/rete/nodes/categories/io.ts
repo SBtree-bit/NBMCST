@@ -1,6 +1,7 @@
 import { ClassicPreset as Classic } from 'rete';
+import * as Utils from "./utils";
 
-class InputNodeCore extends Classic.Node {
+class InputNodeCore extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 520;
 
@@ -23,7 +24,7 @@ class InputNodeCore extends Classic.Node {
   }
 }
 
-class InputNodePost extends Classic.Node {
+class InputNodePost extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 260;
 
@@ -39,7 +40,7 @@ class InputNodePost extends Classic.Node {
   }
 }
 
-class OutputNodeFrag extends Classic.Node {
+class OutputNodeFrag extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 80;
 
@@ -50,7 +51,7 @@ class OutputNodeFrag extends Classic.Node {
   }
 }
 
-class OutputNodeVert extends Classic.Node {
+class OutputNodeVert extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 80;
 
@@ -61,7 +62,7 @@ class OutputNodeVert extends Classic.Node {
   }
 }
 
-class AdditionalOutputNode extends Classic.Node {
+class AdditionalOutputNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 115;
 
@@ -73,7 +74,7 @@ class AdditionalOutputNode extends Classic.Node {
   }
 }
 
-class AdditionalInputNode extends Classic.Node {
+class AdditionalInputNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 115;
 

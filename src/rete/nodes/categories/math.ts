@@ -1,6 +1,7 @@
 import { ClassicPreset as Classic } from 'rete';
+import * as Utils from "./utils";
 
-class AddNode extends Classic.Node {
+class AddNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 150;
 
@@ -13,7 +14,7 @@ class AddNode extends Classic.Node {
   }
 }
 
-class SubtractNode extends Classic.Node {
+class SubtractNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 150;
 
@@ -26,7 +27,7 @@ class SubtractNode extends Classic.Node {
   }
 }
 
-class MultiplyNode extends Classic.Node {
+class MultiplyNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 150;
 
@@ -39,7 +40,7 @@ class MultiplyNode extends Classic.Node {
   }
 }
 
-class DivideNode extends Classic.Node {
+class DivideNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 150;
 

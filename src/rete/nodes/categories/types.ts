@@ -1,6 +1,7 @@
 import { ClassicPreset as Classic } from 'rete';
+import * as Utils from "./utils";
 
-class NumberNode extends Classic.Node {
+class NumberNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 120;
 
@@ -15,7 +16,7 @@ class NumberNode extends Classic.Node {
   }
 }
 
-class Vec2Node extends Classic.Node {
+class Vec2Node extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 150;
 
@@ -28,7 +29,7 @@ class Vec2Node extends Classic.Node {
   }
 }
 
-class Vec3Node extends Classic.Node {
+class Vec3Node extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 190;
 
@@ -42,7 +43,7 @@ class Vec3Node extends Classic.Node {
   }
 }
 
-class Vec4Node extends Classic.Node {
+class Vec4Node extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 230;
 
@@ -57,7 +58,7 @@ class Vec4Node extends Classic.Node {
   }
 }
 
-class ColorNode extends Classic.Node {
+class ColorNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 230;
 
