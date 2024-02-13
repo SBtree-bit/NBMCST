@@ -1,5 +1,5 @@
 import { ClassicPreset as Classic } from 'rete';
-import * as Utils from "./utils";
+import * as Utils from "../utils";
 
 class AddNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;

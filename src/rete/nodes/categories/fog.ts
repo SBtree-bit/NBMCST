@@ -1,12 +1,24 @@
 import { ClassicPreset as Classic } from 'rete';
-import * as Utils from "./utils";
+import * as Utils from "../utils";
 
 class LinearFogNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 260;
   types = {
-    "fog": "vec4"
+    in: {
+      in_color: "vec4",
+      vertex_distance: "float",
+      fog_start: "float",
+      fog_end: "float",
+      fog_color: "vec4"
+    },
+    out: {
+      fog: "vec4"
+    }
   };
+  includes = [
+    "fog.glsl"
+  ]
 
   constructor(socket: Classic.Socket) {
     super('Linear Fog');
@@ -29,8 +41,18 @@ class LinearFogFadeNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 200;
   types = {
-    "fade": "float"
+    in: {
+      vertex_distance: "float",
+      fog_start: "float",
+      fog_end: "float"
+    },
+    out: {
+      fade: "float"
+    }
   };
+  includes = [
+    "fog.glsl"
+  ]
 
   constructor(socket: Classic.Socket) {
     super('Linear Fog Fade');
@@ -40,9 +62,46 @@ class LinearFogFadeNode extends Classic.Node implements Utils.GLSLNode {
     this.addInput('fog_end', new Classic.Input(socket, 'End Distance'));
     this.addOutput('fade', new Classic.Output(socket, 'Fade'));
   }
+  code(inputs: any): object {
+    return {
+      "fade": `linear_fog_fade(${inputs["vertex_distance"]}, ${inputs["fog_start"]}, ${inputs["fog_end"]})`
+    }
+  }
 }
 
-type Node = LinearFogNode | LinearFogFadeNode
+class FogDistanceNode extends Classic.Node implements Utils.GLSLNode {
+  width = 180;
+  height = 200;
+  types = {
+    in: {
+      model_view_mat: "mat4",
+      pos: "vec3",
+      shape: "int"
+    },
+    out: {
+      distance: "float"
+    }
+  };
+  includes = [
+    "fog.glsl"
+  ]
 
-export { LinearFogNode, LinearFogFadeNode }
+  constructor(socket: Classic.Socket) {
+    super('Fog Distance');
+
+    this.addInput('model_view_mat', new Classic.Input(socket, 'Model View Matrix'));
+    this.addInput('pos', new Classic.Input(socket, 'Position'));
+    this.addInput('shape', new Classic.Input(socket, 'Shape'));
+    this.addOutput('distance', new Classic.Output(socket, 'Distance'));
+  }
+  code(inputs: any): object {
+    return {
+      "distance": `fog_distance(${inputs["model_view_mat"]}, ${inputs["pos"]}, ${inputs["shape"]})`
+    }
+  }
+}
+
+type Node = LinearFogNode | LinearFogFadeNode | FogDistanceNode
+
+export { LinearFogNode, LinearFogFadeNode, FogDistanceNode }
 export type { Node }

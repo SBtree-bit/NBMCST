@@ -82,7 +82,8 @@ export async function createEditor(container: HTMLElement) {
       ['Input - Post', ()=> new Nodes.IO.InputNodePost(socket)],
       ['Additional Input', () => new Nodes.IO.AdditionalInputNode(socket)],
       ['Linear Fog', ()=> new Nodes.Fog.LinearFogNode(socket)],
-      ['Linear Fog Fade', ()=> new Nodes.Fog.LinearFogFadeNode(socket)]
+      ['Linear Fog Fade', ()=> new Nodes.Fog.LinearFogFadeNode(socket)],
+      ['Fog Distance', ()=> new Nodes.Fog.FogDistanceNode(socket)]
     ]),
   });
   const minimap = new MinimapPlugin<Schemes>();
