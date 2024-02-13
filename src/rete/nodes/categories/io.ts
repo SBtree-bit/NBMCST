@@ -1,7 +1,8 @@
 import { ClassicPreset as Classic } from 'rete';
 import * as Utils from "../utils";
+import { Sockets } from "../types";
 
-class InputNodeCore extends Classic.Node implements Utils.InputNode {
+class InputNodeCore extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 520;
 
@@ -24,7 +25,7 @@ class InputNodeCore extends Classic.Node implements Utils.InputNode {
   }
 }
 
-class InputNodePost extends Classic.Node implements Utils.InputNode {
+class InputNodePost extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 260;
 

@@ -1,34 +1,26 @@
 import { ClassicPreset as Classic } from 'rete';
 import * as Utils from "../utils";
+import { Sockets } from "../types";
 
 class LinearFogNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 260;
   types = {
-    in: {
-      in_color: "vec4",
-      vertex_distance: "float",
-      fog_start: "float",
-      fog_end: "float",
-      fog_color: "vec4"
-    },
-    out: {
-      fog: "vec4"
-    }
+    fog: "vec4"
   };
   includes = [
     "fog.glsl"
-  ]
+  ];
 
   constructor(socket: Classic.Socket) {
     super('Linear Fog');
 
-    this.addInput('in_color', new Classic.Input(socket, 'In Color'));
-    this.addInput('vertex_distance', new Classic.Input(socket, 'Vertex Distance'));
-    this.addInput('fog_start', new Classic.Input(socket, 'Start Distance'));
-    this.addInput('fog_end', new Classic.Input(socket, 'End Distance'));
-    this.addInput('fog_color', new Classic.Input(socket, 'Fog Color'));
-    this.addOutput('fog', new Classic.Output(socket, 'Fog'));
+    this.addInput('in_color', new Classic.Input(Sockets["vec4"], 'In Color'));
+    this.addInput('vertex_distance', new Classic.Input(Sockets["float"], 'Vertex Distance'));
+    this.addInput('fog_start', new Classic.Input(Sockets["float"], 'Start Distance'));
+    this.addInput('fog_end', new Classic.Input(Sockets["float"], 'End Distance'));
+    this.addInput('fog_color', new Classic.Input(Sockets["vec4"], 'Fog Color'));
+    this.addOutput('fog', new Classic.Output(Sockets["vec4"], 'Fog'));
   }
   code(inputs: any): object {
     return {
@@ -41,26 +33,19 @@ class LinearFogFadeNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 200;
   types = {
-    in: {
-      vertex_distance: "float",
-      fog_start: "float",
-      fog_end: "float"
-    },
-    out: {
-      fade: "float"
-    }
+    fade: "float"
   };
   includes = [
     "fog.glsl"
-  ]
+  ];
 
   constructor(socket: Classic.Socket) {
     super('Linear Fog Fade');
 
-    this.addInput('vertex_distance', new Classic.Input(socket, 'Vertex Distance'));
-    this.addInput('fog_start', new Classic.Input(socket, 'Start Distance'));
-    this.addInput('fog_end', new Classic.Input(socket, 'End Distance'));
-    this.addOutput('fade', new Classic.Output(socket, 'Fade'));
+    this.addInput('vertex_distance', new Classic.Input(Sockets["float"], 'Vertex Distance'));
+    this.addInput('fog_start', new Classic.Input(Sockets["float"], 'Start Distance'));
+    this.addInput('fog_end', new Classic.Input(Sockets["float"], 'End Distance'));
+    this.addOutput('fade', new Classic.Output(Sockets["float"], 'Fade'));
   }
   code(inputs: any): object {
     return {
@@ -73,14 +58,7 @@ class FogDistanceNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;
   height = 200;
   types = {
-    in: {
-      model_view_mat: "mat4",
-      pos: "vec3",
-      shape: "int"
-    },
-    out: {
-      distance: "float"
-    }
+    distance: "float"
   };
   includes = [
     "fog.glsl"
@@ -89,10 +67,10 @@ class FogDistanceNode extends Classic.Node implements Utils.GLSLNode {
   constructor(socket: Classic.Socket) {
     super('Fog Distance');
 
-    this.addInput('model_view_mat', new Classic.Input(socket, 'Model View Matrix'));
-    this.addInput('pos', new Classic.Input(socket, 'Position'));
-    this.addInput('shape', new Classic.Input(socket, 'Shape'));
-    this.addOutput('distance', new Classic.Output(socket, 'Distance'));
+    this.addInput('model_view_mat', new Classic.Input(Sockets["mat4"], 'Model View Matrix'));
+    this.addInput('pos', new Classic.Input(Sockets["vec3"], 'Position'));
+    this.addInput('shape', new Classic.Input(Sockets["int"], 'Shape'));
+    this.addOutput('distance', new Classic.Output(Sockets["float"], 'Distance'));
   }
   code(inputs: any): object {
     return {
