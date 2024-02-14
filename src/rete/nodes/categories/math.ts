@@ -3,14 +3,14 @@ import * as Utils from "../utils";
 import { Sockets } from "../types";
 
 let Mathable = new Classic.Socket("Mathable")
-Sockets["int"].combineWith(Mathable)
+/*Sockets["int"].combineWith(Mathable)
 Sockets["float"].combineWith(Mathable)
 Sockets["vec2"].combineWith(Mathable)
 Sockets["vec3"].combineWith(Mathable)
 Sockets["vec4"].combineWith(Mathable)
 Sockets["mat2"].combineWith(Mathable)
 Sockets["mat3"].combineWith(Mathable)
-Sockets["mat4"].combineWith(Mathable)
+Sockets["mat4"].combineWith(Mathable)*/
 
 class AddNode extends Classic.Node implements Utils.GLSLNode {
   width = 180;

@@ -1,10 +1,7 @@
-type ConnectionTypes = {
-  out: object
-}
 interface GLSLNode {
   code: (inputs: object) => object
-  types: ConnectionTypes
+  types: object
   includes: Array<string> | undefined
 }
 
-export type { GLSLNode, ConnectionTypes }
+export type { GLSLNode }

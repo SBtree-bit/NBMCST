@@ -125,8 +125,8 @@ export async function createEditor(container: HTMLElement) {
   await editor.addNode(b);
   await editor.addNode(add);
 
-  await editor.addConnection(new Connection(a, 'value', add, 'a'));
-  await editor.addConnection(new Connection(b, 'value', add, 'b'));
+  //await editor.addConnection(new Connection(a, 'value', add, 'a'));
+  //await editor.addConnection(new Connection(b, 'value', add, 'b'));
 
   const arrange = new AutoArrangePlugin<Schemes>();
 

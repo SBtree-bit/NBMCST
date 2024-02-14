@@ -1,7 +1,7 @@
 import { ClassicPreset as Classic } from 'rete';
 import * as Utils from "../utils";
 
-class NumberNode extends Classic.Node implements Utils.GLSLNode {
+class NumberNode extends Classic.Node {
   width = 180;
   height = 120;
   types = {
@@ -58,7 +58,7 @@ class Vec3Node extends Classic.Node implements Utils.GLSLNode {
   types = {
     in: {
       x: "float",
-      y: "float",,
+      y: "float",
       z: "float"
     },
     out: {
